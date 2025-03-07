@@ -13,7 +13,7 @@
 ## Installation
 
 ```bash
-go get github.com/yourusername/kemu
+go get github.com/modfin/kemu
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ package main
 
 import (
     "fmt"
-    "github.com/yourusername/kemu"
+    "github.com/modfin/kemu"
 )
 
 func main() {
