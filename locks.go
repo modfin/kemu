@@ -14,7 +14,7 @@ type Mutex struct {
 }
 
 type lockEntry struct {
-	mu       sync.Mutex
+	sync.Mutex
 	refCount int
 }
 
@@ -50,7 +50,7 @@ func (km *Mutex) TryLock(key string) bool {
 		km.locks[key] = le
 	}
 	le.refCount++
-	le.mu.Lock()
+	le.Lock()
 	return true
 }
 
@@ -65,7 +65,7 @@ func (km *Mutex) Lock(key string) {
 	le.refCount++
 	km.mu.Unlock()
 
-	le.mu.Lock()
+	le.Lock()
 }
 
 // Unlock releases a lock on the key
@@ -81,5 +81,5 @@ func (km *Mutex) Unlock(key string) {
 	if le.refCount == 0 {
 		delete(km.locks, key)
 	}
-	le.mu.Unlock()
+	le.Unlock()
 }
